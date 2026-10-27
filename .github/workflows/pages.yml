@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - arena/93ef0315-gamevital
   workflow_dispatch:
 
 permissions:

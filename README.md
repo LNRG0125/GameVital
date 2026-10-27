@@ -32,4 +32,4 @@ La guía de escenas y arquitectura Unity del prototipo previo permanece en `Docs
 
 ## GitHub Pages
 
-El sitio del repositorio usa `npm run build:pages`, que compila con la ruta base `/GameVital/`. El flujo de publicación está en `.github/workflows/pages.yml` y publica los pushes a `main` y a la rama de trabajo. En GitHub configura **Settings → Pages → Build and deployment → Source: GitHub Actions**. Cuando termine la acción `Deploy V.I.T.A.L VR to GitHub Pages`, la página estará en <https://lnrg0125.github.io/GameVital/>.
+El sitio del repositorio usa `npm run build:pages`, que compila con la ruta base `/GameVital/`. El flujo de publicación está en `.github/workflows/pages.yml` y se ejecuta al actualizar `main`. En GitHub configura **Settings → Pages → Build and deployment → Source: GitHub Actions** y fusiona la PR #2. Cuando termine la acción `Deploy V.I.T.A.L VR to GitHub Pages`, la página estará en <https://lnrg0125.github.io/GameVital/>.

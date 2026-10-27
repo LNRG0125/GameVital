@@ -8,7 +8,7 @@ La habitación se representa con la panorámica (`public/assets/isolation-room-3
 
 ## Publicación en GitHub Pages
 
-El sitio de proyecto se sirve bajo `/GameVital/`, no en la raíz del dominio. `npm run build:pages` genera el bundle con esa base y el workflow `.github/workflows/pages.yml` publica desde `main` y `arena/93ef0315-gamevital`. Para habilitarlo, configurar en el repositorio GitHub **Settings → Pages → Build and deployment → Source → GitHub Actions**. La ejecución de Actions que finalice correctamente servirá <https://lnrg0125.github.io/GameVital/>. Si la fuente de Pages continúa en “Deploy from a branch”, el workflow no podrá publicar hasta cambiar esa opción.
+El sitio de proyecto se sirve bajo `/GameVital/`, no en la raíz del dominio. `npm run build:pages` genera el bundle con esa base y el workflow `.github/workflows/pages.yml` publica desde `main`. Para habilitarlo, configura en el repositorio GitHub **Settings → Pages → Build and deployment → Source → GitHub Actions** y fusiona la PR #2. La ejecución de Actions que finalice correctamente servirá <https://lnrg0125.github.io/GameVital/>. Si la fuente de Pages continúa en “Deploy from a branch”, el workflow no podrá publicar hasta cambiar esa opción.
 
 ## Inicio
 
