@@ -1,17 +1,35 @@
-# V.I.T.A.L VR — prototipo educativo
+# V.I.T.A.L VR Web
 
-Prototipo base en Unity para una experiencia inmersiva educativa inspirada en la estación V.I.T.A.L / Voxi-Safe. El visor ejecuta el juego; la Raspberry Pi Zero 2 W es una estación periférica opcional y **no** se considera capaz de ejecutar la aplicación VR.
+Experiencia educativa e inmersiva que se ejecuta en el navegador. Usa una panorámica 360° de una habitación de aislamiento hospitalaria, interacción con puntos del entorno, una misión narrativa de cinco etapas, subtítulos, controles de teclado/botones y reconocimiento de voz opcional cuando el navegador lo soporta. Al seleccionar la estación, presenta las dos imágenes de V.I.T.A.L/Voxi-Safe compartidas por el usuario con una pantalla y señales luminosas animadas de demostración. En dispositivos compatibles también ofrece WebXR.
 
-> **Seguridad:** V.I.T.A.L VR es una simulación educativa, no un dispositivo médico validado. No diagnostica, no sustituye la valoración profesional ni debe utilizarse para tomar decisiones clínicas. Las reglas incluidas son demostrativas y deben ser aprobadas por profesionales sanitarios antes de cualquier uso formativo.
+> **Aviso:** simulación educativa. No es un sistema médico validado, no diagnostica y no debe guiar decisiones clínicas. Los estados verde/ámbar/rojo son resultados ficticios de demostración. Ante necesidades reales, acudir a profesionales sanitarios.
 
-## Contenido
-- `Docs/DISENO.md`: documento de diseño, flujo narrativo, escenas, arquitectura, configuración Unity y plan de pruebas e integración.
-- `Assets/Scripts/`: código C# inicial independiente de un proveedor de voz o hardware.
+## Ejecutar localmente
 
-## Inicio rápido
-1. Cree un proyecto Unity 2022.3 LTS o Unity 6 (3D URP recomendado) y añada TextMesh Pro desde Package Manager.
-2. Copie `Assets/` y `Docs/` a la raíz del proyecto.
-3. Siga la configuración de escenas y referencias descrita en `Docs/DISENO.md`.
-4. Ejecute en el Editor: controles de teclado `Y` (Sí), `N` (No), `R` (Repetir), `H` (Ayuda), `F` (Finalizar), `E` (interactuar/continuar) y `X` (reiniciar). También se pueden conectar los métodos públicos del controlador a botones UI.
+Requiere Node.js 20.19+ o 22.12+.
 
-El prototipo incluye respuestas de voz simuladas por teclado, texto/subtítulos, progreso, exploración de estación seleccionable, reglas de resultado explícitamente ficticias y un transporte de hardware simulado. No se incluye todavía un motor de reconocimiento de voz real, assets 3D ni un protocolo de producción.
+```bash
+npm install
+npm run dev
+```
+
+Abre la URL que muestra Vite. Para generar y revisar la versión estática:
+
+```bash
+npm run build
+npm run preview
+```
+
+El reconocimiento de voz solicita consentimiento explícito antes de activarse y requiere permiso de micrófono. Su disponibilidad y procesamiento dependen del navegador; el juego ofrece botones como alternativa. La aplicación no persiste respuestas ni audio. El panorama se sirve desde `public/assets/` y la escena puede abrirse sin servicios externos.
+
+## Controles
+
+- Ratón/táctil: arrastrar para mirar; pulsar marcadores para inspeccionar y seleccionar la estación.
+- Teclado: `Y` sí, `N` no, `R` repetir, `H` ayuda, `F` finalizar, `E` continuar, `X` recentrar, flechas para mirar.
+- En VR: WebXR y puntero de control si el visor/navegador admite sesión inmersiva y DOM overlay.
+
+La guía de escenas y arquitectura Unity del prototipo previo permanece en `Docs/DISENO.md`; la versión web y su estructura están en `Docs/WEB.md`.
+
+## GitHub Pages
+
+El sitio del repositorio usa `npm run build:pages`, que compila con la ruta base `/GameVital/`. El flujo de publicación está en `.github/workflows/pages.yml` y se ejecuta al actualizar `main`. En GitHub configura **Settings → Pages → Build and deployment → Source: GitHub Actions** y fusiona la PR #2. Cuando termine la acción `Deploy V.I.T.A.L VR to GitHub Pages`, la página estará en <https://lnrg0125.github.io/GameVital/>.
