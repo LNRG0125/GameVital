@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eaf3f7" />
+    <meta name="description" content="V.I.T.A.L VR — simulación educativa e inmersiva de interacción hospitalaria por voz." />
+    <title>V.I.T.A.L VR · Sala de aislamiento</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="scene" aria-label="Vista panorámica interactiva de una sala hospitalaria"></div>
+      <div id="ui-layer">
+      <div class="scene-shade"></div>
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="VITAL VR inicio">
+          <span class="brand-mark"><span class="brand-wave"><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="brand-copy"><strong>V.I.T.A.L<span> VR</span></strong><small>VOICE · WELLBEING · CARE</small></span>
+        </a>
+        <div class="room-chip"><span class="live-dot"></span><span>HABITACIÓN DE AISLAMIENTO</span><b>01</b></div>
+        <div class="top-actions">
+          <button id="accessibilityButton" class="icon-button" aria-label="Opciones de accesibilidad" title="Accesibilidad">◉</button>
+          <button id="soundButton" class="icon-button" aria-label="Activar o desactivar narración" title="Narración de voz">♫</button>
+          <div class="user-chip"><span class="user-avatar">V</span><span>Modo demo</span></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="mission-progress" aria-label="Progreso de la misión">
+          <div class="progress-top"><span class="eyebrow">MISIÓN DE BIENESTAR</span><span id="progressCount">01 <i>/ 05</i></span></div>
+          <div class="progress-track"><div id="progressFill"></div></div>
+          <div class="steps-row">
+            <span class="step active" data-step="0"><i>01</i><b>Bienvenida</b></span>
+            <span class="step" data-step="1"><i>02</i><b>Explora</b></span>
+            <span class="step" data-step="2"><i>03</i><b>Conversa</b></span>
+            <span class="step" data-step="3"><i>04</i><b>Evalúa</b></span>
+            <span class="step" data-step="4"><i>05</i><b>Cierre</b></span>
+          </div>
+        </section>
+
+        <section class="assistant-card" aria-live="polite" aria-atomic="false">
+          <div class="assistant-head">
+            <div class="assistant-avatar"><span class="avatar-core">V</span><span class="avatar-orbit"></span></div>
+            <div class="assistant-name"><strong>Vita</strong><span>Tu guía virtual</span></div>
+            <div class="online-status"><i></i> LISTA</div>
+          </div>
+          <div id="waveform" class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="assistant-message">
+            <div class="message-meta"><span id="stageLabel">ETAPA 01 · BIENVENIDA</span><span class="message-time">AHORA</span></div>
+            <h1 id="messageTitle">Un espacio tranquilo para empezar.</h1>
+            <p id="messageBody">Hola, soy Vita. Te acompañaré en una breve misión de bienestar. Puedes explorar la habitación con el ratón o los controles, y responder con botones o voz.</p>
+          </div>
+          <div id="questionControls" class="question-controls hidden">
+            <button id="yesButton" class="answer-button yes"><span class="answer-symbol">✓</span><span>Sí</span><kbd>Y</kbd></button>
+            <button id="noButton" class="answer-button no"><span class="answer-symbol">—</span><span>No</span><kbd>N</kbd></button>
+          </div>
+          <div class="assistant-footer">
+            <button id="repeatButton" class="text-action"><span>↻</span> Repetir</button>
+            <button id="helpButton" class="text-action"><span>?</span> Necesito ayuda</button>
+            <button id="micButton" class="mic-button" aria-label="Hablar con Vita"><span class="mic-icon">●</span><span id="micLabel">Hablar</span></button>
+          </div>
+          <div id="voiceNotice" class="voice-notice hidden"></div>
+        </section>
+
+        <section id="welcomeCard" class="welcome-card">
+          <div class="welcome-kicker"><span class="sparkle">✦</span> EXPERIENCIA INTERACTIVA · 4 MIN</div>
+          <h2>Bienvenido a<br/><em>V.I.T.A.L VR</em></h2>
+          <p>Conoce una habitación de aislamiento moderna y descubre cómo una estación de voz puede acompañar una conversación de bienestar.</p>
+          <div class="welcome-tags"><span><i>◌</i> Sin contacto</span><span><i>⌁</i> A tu ritmo</span><span><i>◎</i> Sin registro</span></div>
+          <button id="startButton" class="primary-button">Entrar a la habitación <span>↗</span></button>
+          <div class="welcome-foot"><span class="shield-icon">✧</span> Simulación educativa · No realiza diagnósticos</div>
+        </section>
+
+        <section id="objectCard" class="object-card hidden" aria-live="polite">
+          <button id="closeObject" class="close-object" aria-label="Cerrar">×</button>
+          <span class="eyebrow">PUNTO DE INTERÉS</span>
+          <h3 id="objectTitle">Estación V.I.T.A.L</h3>
+          <p id="objectDescription">Una interfaz sin contacto para facilitar conversaciones de bienestar.</p>
+          <button id="interactObject" class="small-primary">Interactuar <span>→</span></button>
+        </section>
+
+        <section id="resultPanel" class="result-panel hidden" aria-live="polite">
+          <div id="resultIcon" class="result-icon">✓</div>
+          <div><span class="eyebrow">RESULTADO DEMOSTRATIVO</span><h3 id="resultTitle">Seguimiento · simulación</h3><p id="resultText">Este es un resultado ficticio para mostrar el flujo.</p></div>
+          <span class="demo-stamp">NO CLÍNICO</span>
+        </section>
+
+        <div class="scene-hint"><span class="hint-glyph">↔</span><span id="hintText">Arrastra para mirar alrededor</span><kbd>← ↑ ↓ →</kbd></div>
+        <div class="room-caption"><span class="caption-pin"></span><span id="roomLabel">Sala de aislamiento · luz natural</span><span class="caption-divider"></span><span>VISTA PANORÁMICA</span></div>
+        <div class="reticle" aria-hidden="true"><i></i><b></b></div>
+        <div id="hotspotLabel" class="hotspot-label hidden">Estación V.I.T.A.L <span>↗</span></div>
+        <div class="bottom-actions">
+          <button id="resetViewButton" class="round-control" aria-label="Recentrar vista" title="Recentrar vista">⌖</button>
+          <button id="vrButton" class="vr-button hidden"><span>◉</span> Entrar en VR</button>
+          <div class="bottom-spacer"></div>
+          <button id="finishButton" class="finish-button hidden">Finalizar misión</button>
+          <button id="continueButton" class="continue-button">Comenzar <span>→</span></button>
+        </div>
+      </main>
+      <div id="toast" class="toast" role="status"></div>
+      <div id="helpModal" class="modal-backdrop hidden">
+        <div class="help-modal">
+          <button id="closeHelp" class="modal-close" aria-label="Cerrar">×</button>
+          <div class="help-icon">✧</div>
+          <span class="eyebrow">AYUDA Y ACCESIBILIDAD</span>
+          <h3>Explora a tu manera</h3>
+          <p>Esta misión puede completarse sin voz. Usa los botones grandes en pantalla. En computadora, arrastra para mirar y pulsa un punto luminoso para explorar. Si activas el micrófono, el navegador puede procesar el audio según su proveedor y configuración.</p>
+          <div class="help-list"><div><kbd>Y</kbd><span>Responder Sí</span></div><div><kbd>N</kbd><span>Responder No</span></div><div><kbd>R</kbd><span>Repetir indicación</span></div><div><kbd>H</kbd><span>Abrir esta ayuda</span></div><div><kbd>Esc</kbd><span>Pausar / cerrar panel</span></div></div>
+          <div class="access-tools"><button id="textSmaller">A−</button><span>Tamaño de subtítulos</span><button id="textLarger">A+</button><button id="contrastToggle">Alto contraste</button></div>
+          <p class="help-safety">No compartas información personal o médica real. Esta experiencia es una simulación educativa y no sustituye a profesionales sanitarios.</p>
+        </div>
+      </div>
+      <div class="disclaimer-pill"><span>ⓘ</span> SIMULACIÓN EDUCATIVA · NO ES UNA HERRAMIENTA MÉDICA</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
