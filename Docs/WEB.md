@@ -6,6 +6,10 @@ Una experiencia de navegador sin Unity basada en un panorama equirectangular 360
 
 La habitación se representa con la panorámica (`public/assets/isolation-room-360.jpg`), no con geometría arquitectónica editable. Esto da al prototipo una apariencia de fotografía inmersiva, aunque no equivale a una recreación 3D fotogramétrica de un hospital real. El punto interactivo de la estación abre una ficha que sí utiliza las dos imágenes aportadas por el usuario (`vital-device-front.jpg` y `voxi-safe-concept.jpg`), incluye selector de vista y superpone una pantalla de ejemplo animada sobre la vista frontal. Para adaptar dimensiones, objetos o dispositivos dentro del entorno panorámico, sustituir la panorámica por fotografía 360° autorizada o por un modelo 3D optimizado.
 
+## Publicación en GitHub Pages
+
+El sitio de proyecto se sirve bajo `/GameVital/`, no en la raíz del dominio. `npm run build:pages` genera el bundle con esa base y el workflow `.github/workflows/pages.yml` publica desde `main` y `arena/93ef0315-gamevital`. Para habilitarlo, configurar en el repositorio GitHub **Settings → Pages → Build and deployment → Source → GitHub Actions**. La ejecución de Actions que finalice correctamente servirá <https://lnrg0125.github.io/GameVital/>. Si la fuente de Pages continúa en “Deploy from a branch”, el workflow no podrá publicar hasta cambiar esa opción.
+
 ## Inicio
 
 Requisitos: Node.js 20.19+ o 22.12+.

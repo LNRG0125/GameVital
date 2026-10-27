@@ -29,3 +29,7 @@ El reconocimiento de voz solicita consentimiento explícito antes de activarse y
 - En VR: WebXR y puntero de control si el visor/navegador admite sesión inmersiva y DOM overlay.
 
 La guía de escenas y arquitectura Unity del prototipo previo permanece en `Docs/DISENO.md`; la versión web y su estructura están en `Docs/WEB.md`.
+
+## GitHub Pages
+
+El sitio del repositorio usa `npm run build:pages`, que compila con la ruta base `/GameVital/`. El flujo de publicación está en `.github/workflows/pages.yml` y publica los pushes a `main` y a la rama de trabajo. En GitHub configura **Settings → Pages → Build and deployment → Source: GitHub Actions**. Cuando termine la acción `Deploy V.I.T.A.L VR to GitHub Pages`, la página estará en <https://lnrg0125.github.io/GameVital/>.

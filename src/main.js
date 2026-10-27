@@ -4,6 +4,7 @@ import './style.css';
 import './webxr.css';
 import './device.css';
 
+const ASSET_BASE = import.meta.env.BASE_URL;
 const $ = (id) => document.getElementById(id);
 const ui = {
   scene: $('scene'), progressFill: $('progressFill'), progressCount: $('progressCount'),
@@ -22,6 +23,7 @@ const ui = {
   hotspotLabel: $('hotspotLabel'), hintText: $('hintText'), roomLabel: $('roomLabel'),
   helpModal: $('helpModal'), toast: $('toast'), vrButton: $('vrButton')
 };
+ui.deviceImage.src = `${ASSET_BASE}assets/vital-device-front.jpg`;
 
 const steps = [
   { key: 'welcome', label: 'BIENVENIDA', title: 'Un espacio tranquilo para empezar.', body: 'Hola, soy Vita. Te acompañaré en una breve misión de bienestar. Puedes explorar la habitación con el ratón o los controles, y responder con botones o voz.' },
@@ -78,7 +80,7 @@ renderer.domElement.setAttribute('aria-label', 'Panorama interactivo. Arrastra p
 ui.scene.appendChild(renderer.domElement);
 
 const loader = new THREE.TextureLoader();
-loader.load('/assets/isolation-room-360.jpg', (texture) => {
+loader.load(`${ASSET_BASE}assets/isolation-room-360.jpg`, (texture) => {
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.magFilter = THREE.LinearFilter;
@@ -163,7 +165,7 @@ function showDeviceView(view) {
   deviceView = view;
   ui.deviceStage.classList.add('changing');
   window.setTimeout(() => {
-    ui.deviceImage.src = view === 'front' ? '/assets/vital-device-front.jpg' : '/assets/voxi-safe-concept.jpg';
+    ui.deviceImage.src = view === 'front' ? `${ASSET_BASE}assets/vital-device-front.jpg` : `${ASSET_BASE}assets/voxi-safe-concept.jpg`;
     ui.deviceImage.alt = view === 'front'
       ? 'Dispositivo V.I.T.A.L frontal, imagen compartida por el usuario'
       : 'Concepto del dispositivo Voxi-Safe en perspectiva, imagen compartida por el usuario';
