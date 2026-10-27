@@ -1,6 +1,6 @@
 # V.I.T.A.L VR Web
 
-Experiencia educativa e inmersiva que se ejecuta en el navegador. Usa una panorámica 360° de una habitación de aislamiento hospitalaria, interacción con puntos del entorno, una misión narrativa de cinco etapas, subtítulos, controles de teclado/botones y reconocimiento de voz opcional cuando el navegador lo soporta. En dispositivos compatibles también ofrece WebXR.
+Experiencia educativa e inmersiva que se ejecuta en el navegador. Usa una panorámica 360° de una habitación de aislamiento hospitalaria, interacción con puntos del entorno, una misión narrativa de cinco etapas, subtítulos, controles de teclado/botones y reconocimiento de voz opcional cuando el navegador lo soporta. Al seleccionar la estación, presenta las dos imágenes de V.I.T.A.L/Voxi-Safe compartidas por el usuario con una pantalla y señales luminosas animadas de demostración. En dispositivos compatibles también ofrece WebXR.
 
 > **Aviso:** simulación educativa. No es un sistema médico validado, no diagnostica y no debe guiar decisiones clínicas. Los estados verde/ámbar/rojo son resultados ficticios de demostración. Ante necesidades reales, acudir a profesionales sanitarios.
 

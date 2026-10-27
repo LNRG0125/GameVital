@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 import './style.css';
 import './webxr.css';
+import './device.css';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -14,6 +15,10 @@ const ui = {
   voiceNotice: $('voiceNotice'), resultPanel: $('resultPanel'), resultIcon: $('resultIcon'),
   resultTitle: $('resultTitle'), resultText: $('resultText'), objectCard: $('objectCard'),
   objectTitle: $('objectTitle'), objectDescription: $('objectDescription'), interactObject: $('interactObject'),
+  deviceShowcase: $('deviceShowcase'), deviceImage: $('deviceImage'), deviceStage: $('deviceStage'),
+  deviceScreenOverlay: $('deviceScreenOverlay'), deviceScreenText: $('deviceScreenText'),
+  deviceScreenCaption: $('deviceScreenCaption'), deviceAnimationText: $('deviceAnimationText'),
+  deviceFrontButton: $('deviceFrontButton'), deviceAngleButton: $('deviceAngleButton'),
   hotspotLabel: $('hotspotLabel'), hintText: $('hintText'), roomLabel: $('roomLabel'),
   helpModal: $('helpModal'), toast: $('toast'), vrButton: $('vrButton')
 };
@@ -146,6 +151,32 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => ui.toast.classList.remove('show'), 2300);
 }
 
+let deviceView = 'front';
+function setDeviceScreen(label, caption) {
+  if (ui.deviceScreenText) ui.deviceScreenText.textContent = label;
+  if (ui.deviceScreenCaption) ui.deviceScreenCaption.textContent = caption;
+  if (ui.deviceAnimationText) ui.deviceAnimationText.textContent = caption;
+}
+
+function showDeviceView(view) {
+  if (view === deviceView) return;
+  deviceView = view;
+  ui.deviceStage.classList.add('changing');
+  window.setTimeout(() => {
+    ui.deviceImage.src = view === 'front' ? '/assets/vital-device-front.jpg' : '/assets/voxi-safe-concept.jpg';
+    ui.deviceImage.alt = view === 'front'
+      ? 'Dispositivo V.I.T.A.L frontal, imagen compartida por el usuario'
+      : 'Concepto del dispositivo Voxi-Safe en perspectiva, imagen compartida por el usuario';
+    ui.deviceScreenOverlay.classList.toggle('hidden', view !== 'front');
+    ui.deviceFrontButton.classList.toggle('active', view === 'front');
+    ui.deviceAngleButton.classList.toggle('active', view === 'angle');
+    ui.deviceAnimationText.textContent = view === 'front'
+      ? 'Pantalla activa · demo interactiva'
+      : 'Vista conceptual · referencia compartida';
+    ui.deviceStage.classList.remove('changing');
+  }, 150);
+}
+
 function speak(text) {
   if (!soundEnabled || !('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
@@ -184,6 +215,10 @@ function setStage(index, options = {}) {
     : stageIndex === 4 ? 'Reiniciar misión <span>↻</span>' : 'Continuar <span>→</span>';
   ui.hintText.textContent = stageIndex === 1 ? 'Busca la estación junto al lavabo y selecciónala' : 'Arrastra para mirar alrededor';
   ui.roomLabel.textContent = stageIndex === 1 ? 'Exploración libre · selecciona un punto luminoso' : 'Sala de aislamiento · luz natural';
+  if (stageIndex === 1) setDeviceScreen('Estación lista', 'Modo exploración · demo');
+  if (stageIndex === 2) setDeviceScreen('Escucha activa', 'Conversación de demostración');
+  if (stageIndex === 3) setDeviceScreen('Procesando demo', 'Respuestas ficticias · local');
+  if (stageIndex === 4) setDeviceScreen('Sesión finalizada', 'Sin datos guardados');
   if (stageIndex === 2) {
     questionIndex = 0;
     answers = [];
@@ -206,7 +241,13 @@ function selectHotspot(id) {
   selectedObject = id;
   ui.objectTitle.textContent = info.title;
   ui.objectDescription.textContent = info.description;
-  ui.interactObject.classList.toggle('hidden', id !== 'station' || stageIndex !== 1);
+  const isStation = id === 'station';
+  ui.objectCard.classList.toggle('device-mode', isStation);
+  ui.deviceShowcase.classList.toggle('hidden', !isStation);
+  ui.interactObject.classList.toggle('hidden', !isStation || stageIndex !== 1);
+  if (isStation) {
+    setDeviceScreen(stageIndex === 2 ? 'Te escucho' : 'Hola, soy Vita', stageIndex === 2 ? 'Escucha activa · demo' : 'Interacción por voz');
+  }
   ui.objectCard.classList.remove('hidden');
   if (id === 'station' && stageIndex === 1) {
     showToast('Estación localizada. Selecciona “Interactuar” para continuar.');
@@ -247,6 +288,7 @@ function answerQuestion(answer) {
   if (stageIndex !== 2 || !questions[questionIndex]) return;
   answers.push(Boolean(answer));
   const confirmation = answer ? 'Sí, anotado.' : 'No, anotado.';
+  setDeviceScreen(answer ? 'Respuesta: Sí' : 'Respuesta: No', 'Respuesta temporal · demo');
   showToast(confirmation);
   if (questionIndex < questions.length - 1) {
     questionIndex++;
@@ -289,6 +331,7 @@ function evaluateSimulation() {
   ui.resultIcon.textContent = result.icon;
   ui.resultTitle.textContent = result.title;
   ui.resultText.textContent = result.text;
+  setDeviceScreen('Resultado de demo', result.title);
   speak(`Evaluación demostrativa. ${result.title}. ${result.text}`);
 }
 
@@ -486,6 +529,8 @@ $('soundButton').addEventListener('click', () => {
   else speak(currentSpokenText());
 });
 $('interactObject').addEventListener('click', interactWithStation);
+ui.deviceFrontButton.addEventListener('click', () => showDeviceView('front'));
+ui.deviceAngleButton.addEventListener('click', () => showDeviceView('angle'));
 $('closeObject').addEventListener('click', () => ui.objectCard.classList.add('hidden'));
 $('resetViewButton').addEventListener('click', resetView);
 $('helpButton').addEventListener('dblclick', closeHelp);

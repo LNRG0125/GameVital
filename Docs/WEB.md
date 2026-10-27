@@ -4,7 +4,7 @@
 
 Una experiencia de navegador sin Unity basada en un panorama equirectangular 360° generado para el prototipo. Three.js renderiza la habitación desde un visor en primera persona; la escena permite arrastrar para mirar y seleccionar marcadores de la cama, ventana, lavamanos y estación V.I.T.A.L. Un HUD narrativo acompaña cinco etapas: bienvenida, exploración, conversación, evaluación demostrativa y cierre.
 
-La habitación se representa con la panorámica (`public/assets/isolation-room-360.jpg`), no con geometría arquitectónica editable. Esto da al prototipo una apariencia de fotografía inmersiva, aunque no equivale a una recreación 3D fotogramétrica de un hospital real. Para adaptar dimensiones, objetos o dispositivos, sustituir la panorámica por fotografía 360° autorizada o por un modelo 3D optimizado.
+La habitación se representa con la panorámica (`public/assets/isolation-room-360.jpg`), no con geometría arquitectónica editable. Esto da al prototipo una apariencia de fotografía inmersiva, aunque no equivale a una recreación 3D fotogramétrica de un hospital real. El punto interactivo de la estación abre una ficha que sí utiliza las dos imágenes aportadas por el usuario (`vital-device-front.jpg` y `voxi-safe-concept.jpg`), incluye selector de vista y superpone una pantalla de ejemplo animada sobre la vista frontal. Para adaptar dimensiones, objetos o dispositivos dentro del entorno panorámico, sustituir la panorámica por fotografía 360° autorizada o por un modelo 3D optimizado.
 
 ## Inicio
 
@@ -56,5 +56,13 @@ Si el navegador expone `navigator.xr` y admite `immersive-vr`, aparece un botón
 - La escena actual es una imagen 360°, no locomoción real ni una habitación con colisiones/objetos 3D editables.
 - No existe integración con Raspberry Pi/Voxi-Safe, BLE, LAN o IA; no se transmiten respuestas a hardware.
 - La API de voz web no asegura uso sin internet ni procesamiento local; para una futura opción offline, integrar un motor local en un adaptador independiente y probar latencia/precisión por acentos y ruido.
+
+### Animaciones del dispositivo
+
+- Alternancia frontal/concepto con transición de imagen.
+- Texto de pantalla cambia entre bienvenida, escucha, respuesta, procesamiento y cierre.
+- Ondas de audio, brillo tenue y líneas de barrido representan actividad ficticia.
+- Los tres indicadores verde/ámbar/rojo pulsan suavemente, acompañados por sus etiquetas.
+- Las animaciones son visuales únicamente y no comunican un estado clínico real. En el panel, las palabras “demo” y “simulación” permanecen visibles.
 - Reemplazar el panorama sólo por contenido autorizado, sin pacientes identificables. Una habitación real requeriría controles de privacidad, consentimiento y evaluación de accesibilidad.
 - Los escenarios clínicos futuros requieren protocolos definidos y validados por profesionales sanitarios. No reutilizar las reglas de prueba en práctica clínica.

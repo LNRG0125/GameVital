@@ -76,7 +76,25 @@
           <span class="eyebrow">PUNTO DE INTERÉS</span>
           <h3 id="objectTitle">Estación V.I.T.A.L</h3>
           <p id="objectDescription">Una interfaz sin contacto para facilitar conversaciones de bienestar.</p>
-          <button id="interactObject" class="small-primary">Interactuar <span>→</span></button>
+          <div id="deviceShowcase" class="device-showcase hidden">
+            <div class="device-stage" id="deviceStage">
+              <img id="deviceImage" src="/assets/vital-device-front.jpg" alt="Dispositivo V.I.T.A.L frontal, imagen compartida por el usuario" />
+              <div id="deviceScreenOverlay" class="device-screen-overlay" aria-label="Pantalla animada de demostración">
+                <span class="device-screen-brand">V.I.T.A.L · DEMO</span>
+                <strong id="deviceScreenText">Hola, soy Vita</strong>
+                <div class="device-screen-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <small id="deviceScreenCaption">Interacción por voz</small>
+              </div>
+              <span class="device-demo-badge">VISTA INTERACTIVA</span>
+            </div>
+            <div class="device-gallery-controls" role="group" aria-label="Vistas del dispositivo">
+              <button id="deviceFrontButton" class="device-view-button active" type="button">Frontal</button>
+              <button id="deviceAngleButton" class="device-view-button" type="button">Concepto Voxi-Safe</button>
+              <span class="device-led-demo"><i class="led-green"></i><i class="led-amber"></i><i class="led-red"></i><small>Indicadores</small></span>
+            </div>
+            <div class="device-animation-note"><span class="pulse-ring"></span><span id="deviceAnimationText">Pantalla activa · demo interactiva</span></div>
+          </div>
+          <button id="interactObject" class="small-primary">Iniciar conversación <span>→</span></button>
         </section>
 
         <section id="resultPanel" class="result-panel hidden" aria-live="polite">
